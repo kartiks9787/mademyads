@@ -1,0 +1,212 @@
+import { motion, Variants } from 'framer-motion';
+import { Bot, PhoneCall, Layout, Megaphone, Share2, Target, BarChart3, Clock, Cpu, Palette, Zap, Headphones } from 'lucide-react';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
+export const Hero = () => {
+  return (
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
+      {/* Background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-purple-600/20 blur-[120px]" />
+        <div className="absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-blue-600/20 blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+            <span className="flex h-2 w-2 rounded-full bg-purple-500 animate-pulse" />
+            <span className="text-sm font-medium text-purple-200">The Future of Digital Growth</span>
+          </div>
+          
+          <h1 className="mb-8 text-5xl font-extrabold tracking-tight text-white sm:text-7xl">
+            Grow Faster with <br />
+            <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              AI Marketing Systems
+            </span>
+          </h1>
+          
+          <p className="mx-auto mb-10 max-w-2xl text-lg text-gray-400 sm:text-xl">
+            We build websites, chatbots, voicebots and ad systems that bring real customers. 
+            Automate your growth and dominate your market.
+          </p>
+
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <button className="group relative overflow-hidden rounded-full bg-gradient-to-r from-purple-600 to-blue-600 px-8 py-4 text-lg font-bold text-white transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+              <span className="relative z-10">Book Free Call</span>
+              <div className="absolute inset-0 -z-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 transition-opacity group-hover:opacity-100" />
+            </button>
+            <button className="rounded-full border border-white/10 bg-white/5 px-8 py-4 text-lg font-bold text-white backdrop-blur-md transition-all hover:bg-white/10">
+              View Services
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Hero Animation Placeholder */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="relative mt-20 flex justify-center"
+        >
+          <div className="relative h-64 w-64 sm:h-96 sm:w-96">
+            <div className="absolute inset-0 animate-[spin_20s_linear_infinite] rounded-full border border-white/5" />
+            <div className="absolute inset-4 animate-[spin_15s_linear_infinite_reverse] rounded-full border border-purple-500/20" />
+            
+            <motion.div 
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <div className="relative h-32 w-32 rounded-3xl bg-gradient-to-br from-purple-500 to-blue-500 p-0.5 shadow-[0_0_50px_rgba(168,85,247,0.3)] sm:h-48 sm:w-48">
+                <div className="flex h-full w-full items-center justify-center rounded-[22px] bg-black/90 backdrop-blur-xl">
+                  <Bot className="h-16 w-16 text-white sm:h-24 sm:w-24" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Floating elements */}
+            {[BarChart3, Target, Cpu, Zap].map((Icon, i) => (
+              <motion.div
+                key={i}
+                animate={{ 
+                  y: [0, Math.random() * 20 - 10, 0],
+                  x: [0, Math.random() * 20 - 10, 0]
+                }}
+                transition={{ 
+                  duration: 3 + i, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className={`absolute h-12 w-12 rounded-xl bg-white/5 p-3 backdrop-blur-lg border border-white/10 ${
+                  i === 0 ? '-top-4 -left-4' : 
+                  i === 1 ? '-top-4 -right-4' : 
+                  i === 2 ? '-bottom-4 -left-4' : 
+                  '-bottom-4 -right-4'
+                }`}
+              >
+                <Icon className="text-purple-400" />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export const WhyChooseUs = () => {
+  const reasons = [
+    { title: "ROI Focused Strategy", desc: "Every campaign is built to maximize your return on investment.", icon: Target },
+    { title: "Fast Delivery", desc: "We deploy high-quality systems in record time to get you moving.", icon: Clock },
+    { title: "AI Automation Experts", desc: "Specialists in cutting-edge AI chatbots and voice automation.", icon: Cpu },
+    { title: "Premium Designs", desc: "Award-worthy aesthetics that build instant brand trust.", icon: Palette },
+    { title: "Real Leads, Real Results", desc: "No vanity metrics. We focus on conversion and revenue.", icon: Zap },
+    { title: "Full Support", desc: "24/7 monitoring and optimization for your digital assets.", icon: Headphones },
+  ];
+
+  return (
+    <section className="py-24 relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4">Why We Are The Best</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">We combine creative excellence with technical precision to deliver unmatched results.</p>
+        </div>
+
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {reasons.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
+              className="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm transition-all hover:border-purple-500/50 hover:bg-white/[0.08]"
+            >
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                <item.icon size={24} />
+              </div>
+              <h3 className="mb-3 text-xl font-bold text-white">{item.title}</h3>
+              <p className="text-gray-400 line-height-relaxed">{item.desc}</p>
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export const Services = () => {
+  const services = [
+    { title: "Chatbot Development", desc: "Intelligent AI assistants that handle sales and support 24/7.", icon: Bot },
+    { title: "Voicebot Setup", desc: "AI-powered calling systems that book appointments and qualify leads.", icon: PhoneCall },
+    { title: "Website Design", desc: "High-end, futuristic websites designed to convert visitors into clients.", icon: Layout },
+    { title: "Meta Ads Management", desc: "Laser-targeted Facebook and Instagram campaigns for maximum reach.", icon: Megaphone },
+    { title: "Funnel Automation", desc: "Seamless customer journeys that automate lead nurturing and sales.", icon: Zap },
+    { title: "Lead Generation", desc: "A steady stream of qualified leads delivered directly to your CRM.", icon: Target },
+  ];
+
+  return (
+    <section id="services" className="py-24 bg-black/40">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4">What We Do</h2>
+            <p className="text-gray-400">Our comprehensive suite of digital solutions is designed to scale your business in the AI era.</p>
+          </div>
+          <button className="text-purple-400 font-semibold flex items-center gap-2 hover:text-purple-300 transition-colors">
+            View All Services <Zap size={16} />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-white/[0.07] to-transparent p-1"
+            >
+              <div className="h-full rounded-[23px] bg-black/80 p-8 transition-colors group-hover:bg-black/60">
+                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 text-purple-400">
+                  <service.icon size={28} />
+                </div>
+                <h3 className="mb-4 text-2xl font-bold text-white">{service.title}</h3>
+                <p className="mb-8 text-gray-400 leading-relaxed">{service.desc}</p>
+                <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white/60 transition-colors group-hover:text-purple-400">
+                  Learn More <Share2 size={14} />
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
